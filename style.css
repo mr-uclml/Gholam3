@@ -22,15 +22,13 @@ body {
     border-radius: 50%;
     position: relative;
     cursor: pointer;
+    transition: transform 0.5s ease;
 }
 
-.cup::before {
-    content: '';
+.cup img {
+    width: 60px;
+    height: 60px;
     position: absolute;
-    width: 40px;
-    height: 40px;
-    background-color: yellow;
-    border-radius: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
