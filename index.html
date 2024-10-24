@@ -17,8 +17,9 @@
         }
         .line {
             white-space: nowrap; /* جلوگیری از شکست خط */
-            overflow: hidden; /* پنهان کردن محتوا اضافه */
+            overflow: hidden; /* پنهان کردن محتوا اضافی */
             width: 100%; /* عرض کامل */
+            text-align: center; /* وسط‌چینی متن */
         }
     </style>
 </head>
@@ -28,15 +29,13 @@
     <script>
         const numbersDiv = document.getElementById('numbers');
         let count = 0;
-        let lineCount = 1; // شمارش خطوط
-
+        
         function addNumber() {
-            // اگر تعداد اعداد در خط بیشتر از 10 باشد، یک خط جدید ایجاد کن
-            if (count % 10 === 0 && count > 0) {
+            // اگر عدد در خط بیشتر از 10 باشد، یک خط جدید ایجاد کن
+            if (count % 10 === 0) {
                 const newLine = document.createElement('div');
                 newLine.className = 'line';
                 numbersDiv.appendChild(newLine);
-                lineCount++;
             }
             // عدد ۳ را به آخرین خط اضافه کن
             const lastLine = numbersDiv.lastChild;
