@@ -34,18 +34,23 @@
         
         function addNumber() {
             // اگر عدد در خط بیشتر از طول متن باشد، یک خط جدید ایجاد کن
-            if (count % (text.length * 2) === 0) { // هر عدد ۳ + یک فاصله
+            if (count % (text.length * 2) === 0 && count > 0) { // هر عدد ۳ + یک فاصله
                 const newLine = document.createElement('div');
                 newLine.className = 'line';
                 numbersDiv.appendChild(newLine);
             }
+            
             // عدد ۳ را به آخرین خط اضافه کن
             const lastLine = numbersDiv.lastChild;
             lastLine.innerHTML += '۳ '; // عدد ۳
             count++;
+            
             // اگر به انتهای متن رسیدیم، عدد ۳ را کنار متن اضافه کن
             if (count % 2 === 0) { // هر دو عدد ۳ یک کاراکتر از متن
-                lastLine.innerHTML += text[Math.floor(count / 2) - 1] + ' '; // کاراکتر متن
+                const index = (count / 2) - 1; // پیدا کردن اندیس کاراکتر
+                if (index < text.length) { // اطمینان از اینکه اندیس معتبر است
+                    lastLine.innerHTML += text[index] + ' '; // کاراکتر متن
+                }
             }
         }
 
