@@ -8,16 +8,17 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
             margin: 0;
+            overflow: hidden; /* جلوگیری از اسکرول افقی */
         }
-        #numbers {
-            white-space: nowrap;
-            overflow: hidden;
-            width: 100%;
+        .line {
+            white-space: nowrap; /* جلوگیری از شکست خط */
+            overflow: hidden; /* پنهان کردن محتوا اضافه */
+            width: 100%; /* عرض کامل */
         }
     </style>
 </head>
@@ -27,13 +28,20 @@
     <script>
         const numbersDiv = document.getElementById('numbers');
         let count = 0;
+        let lineCount = 1; // شمارش خطوط
 
         function addNumber() {
-            numbersDiv.innerHTML += '۳ ';
-            count++;
-            if (count % 10 === 0) { // برای جلوگیری از پر شدن بیش از حد صفحه
-                window.scrollTo(0, document.body.scrollHeight); // اسکرول به پایین
+            // اگر تعداد اعداد در خط بیشتر از 10 باشد، یک خط جدید ایجاد کن
+            if (count % 10 === 0 && count > 0) {
+                const newLine = document.createElement('div');
+                newLine.className = 'line';
+                numbersDiv.appendChild(newLine);
+                lineCount++;
             }
+            // عدد ۳ را به آخرین خط اضافه کن
+            const lastLine = numbersDiv.lastChild;
+            lastLine.innerHTML += '۳ ';
+            count++;
         }
 
         setInterval(addNumber, 100); // هر 100 میلی‌ثانیه عدد ۳ را اضافه کن
