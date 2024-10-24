@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cup and Ball Game</title>
+  <title>Cup and Ball Shuffle Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Cup and Ball Game</h1>
+  <h1>Cup and Ball Shuffle Game</h1>
   <div class="game-container">
-    <div class="cup" id="cup1" onclick="checkCup(1)"></div>
-    <div class="cup" id="cup2" onclick="checkCup(2)"></div>
-    <div class="cup" id="cup3" onclick="checkCup(3)"></div>
+    <div class="cup" id="cup1"></div>
+    <div class="cup" id="cup2"></div>
+    <div class="cup" id="cup3"></div>
   </div>
-  <button onclick="shuffle()">Shuffle Cups</button>
+  <button id="startButton" onclick="startGame()">Start Game</button>
   <p id="result"></p>
 
   <script src="script.js"></script>
