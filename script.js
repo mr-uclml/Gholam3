@@ -1,40 +1,26 @@
 const cups = document.querySelectorAll('.cup');
 const result = document.getElementById('result');
 const shuffleButton = document.getElementById('shuffleButton');
-let ballUnderCup = 1; // سکه در ابتدا زیر کاسه اول قرار دارد
+let ballUnderCup = Math.floor(Math.random() * 3) + 1; // سکه به صورت تصادفی زیر یکی از کاسه‌ها قرار می‌گیرد
 let isShuffling = false;
+
+// اضافه کردن آیکون سکه به یکی از کاسه‌ها
+const coinIcon = document.createElement('img');
+coinIcon.src = 'https://cdn-icons-png.flaticon.com/512/616/616490.png'; // آیکون سکه
+document.getElementById(`cup${ballUnderCup}`).appendChild(coinIcon);
+coinIcon.style.display = 'block';
 
 // شروع جابجایی کاسه‌ها
 shuffleButton.addEventListener('click', () => {
     if (isShuffling) return;
     isShuffling = true;
     result.textContent = '';
-    shuffleCups();
+    
+    // مخفی کردن سکه پس از نشان دادن اولیه
+    setTimeout(() => {
+        coinIcon.style.display = 'none';
+        shuffleCups();
+    }, 1000); // ۱ ثانیه برای نمایش اولیه سکه
 });
 
 cups.forEach((cup, index) => {
-    cup.addEventListener('click', () => {
-        if (isShuffling) return;
-        checkGuess(index + 1);
-    });
-});
-
-function shuffleCups() {
-    let shuffleCount = 0;
-    const shuffleInterval = setInterval(() => {
-        ballUnderCup = Math.floor(Math.random() * 3) + 1;
-        shuffleCount++;
-        if (shuffleCount > 10) { // 10 بار جابجا می‌شود
-            clearInterval(shuffleInterval);
-            isShuffling = false;
-        }
-    }, 500); // هر ۵۰۰ میلی‌ثانیه یک بار جابجایی
-}
-
-function checkGuess(selectedCup) {
-    if (selectedCup === ballUnderCup) {
-        result.textContent = 'تبریک! برنده شدی!';
-    } else {
-        result.textContent = 'متاسفم! دوباره امتحان کن.';
-    }
-}
