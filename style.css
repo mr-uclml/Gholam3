@@ -22,6 +22,7 @@ h1 {
   margin: 0 20px;
   cursor: pointer;
   position: relative;
+  transition: transform 0.5s ease-in-out;
 }
 
 .cup:before {
