@@ -10,6 +10,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
             background-color: #f0f0f0;
             margin: 0;
@@ -21,10 +22,24 @@
             letter-spacing: 2px;
             white-space: nowrap;
         }
+        #gifs {
+            margin-top: 20px;
+        }
+        img {
+            width: 100px;
+            height: auto;
+            margin: 5px;
+        }
     </style>
 </head>
 <body>
     <div id="numbers"></div>
+
+    <div id="gifs">
+        <img src="https://media.tenor.com/BvPcEq4XI-EAAAAM/3-number-3.gif" alt="GIF 1">
+        <img src="https://media.tenor.com/oRFRlKfQtHwAAAAM/fist-fight-ice-cube.gif" alt="GIF 2">
+        <img src="https://media.tenor.com/I40jRpywJpsAAAAM/gabaar-how-many-men.gif" alt="GIF 3">
+    </div>
 
     <script>
         const numbersDiv = document.getElementById('numbers');
