@@ -1,26 +1,25 @@
-const cups = document.querySelectorAll('.cup');
-const result = document.getElementById('result');
-const shuffleButton = document.getElementById('shuffleButton');
-let ballUnderCup = Math.floor(Math.random() * 3) + 1; // سکه به صورت تصادفی زیر یکی از کاسه‌ها قرار می‌گیرد
-let isShuffling = false;
+let ballPosition = 0;
 
-// اضافه کردن آیکون سکه به یکی از کاسه‌ها
-const coinIcon = document.createElement('img');
-coinIcon.src = 'https://cdn-icons-png.flaticon.com/512/616/616490.png'; // آیکون سکه
-document.getElementById(`cup${ballUnderCup}`).appendChild(coinIcon);
-coinIcon.style.display = 'block';
+function shuffle() {
+  document.getElementById("result").textContent = "";
+  
+  // پنهان کردن توپ از همه پیمانه‌ها
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById("cup" + i).style.backgroundColor = '#c0c0c0';
+    document.getElementById("cup" + i).firstChild.style.display = 'none';
+  }
 
-// شروع جابجایی کاسه‌ها
-shuffleButton.addEventListener('click', () => {
-    if (isShuffling) return;
-    isShuffling = true;
-    result.textContent = '';
-    
-    // مخفی کردن سکه پس از نشان دادن اولیه
-    setTimeout(() => {
-        coinIcon.style.display = 'none';
-        shuffleCups();
-    }, 1000); // ۱ ثانیه برای نمایش اولیه سکه
-});
+  // جایگذاری تصادفی توپ
+  ballPosition = Math.floor(Math.random() * 3) + 1;
+}
 
-cups.forEach((cup, index) => {
+function checkCup(selectedCup) {
+  if (selectedCup === ballPosition) {
+    document.getElementById("result").textContent = "You found the ball!";
+    document.getElementById("cup" + selectedCup).style.backgroundColor = '#28a745';
+    document.getElementById("cup" + selectedCup).firstChild.style.display = 'block';
+  } else {
+    document.getElementById("result").textContent = "Wrong! Try again.";
+    document.getElementById("cup" + selectedCup).style.backgroundColor = '#dc3545';
+  }
+}
