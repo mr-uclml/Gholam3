@@ -1,6 +1,7 @@
 let ballPosition = 0;
 let shuffling = false;
 const cups = document.querySelectorAll('.cup');
+let moveCount = 5; // تعداد دفعات جابه‌جایی
 
 function startGame() {
   document.getElementById("result").textContent = "";
@@ -18,18 +19,17 @@ function startGame() {
 }
 
 function showBall(position) {
-  document.getElementById("cup" + position).firstChild.style.display = 'block';
+  document.getElementById("ball" + position).style.display = 'block';
 }
 
 function hideBall() {
   for (let i = 1; i <= 3; i++) {
-    document.getElementById("cup" + i).firstChild.style.display = 'none';
+    document.getElementById("ball" + i).style.display = 'none';
   }
 }
 
 function shuffleCups() {
   shuffling = true;
-  let moves = 5;
   let interval = setInterval(() => {
     let cup1 = Math.floor(Math.random() * 3) + 1;
     let cup2;
@@ -38,11 +38,12 @@ function shuffleCups() {
     } while (cup1 === cup2);
 
     swapCups(cup1, cup2);
-    moves--;
+    moveCount--;
 
-    if (moves === 0) {
+    if (moveCount === 0) {
       clearInterval(interval);
       shuffling = false;
+      moveCount = 5; // ریست تعداد دفعات جابه‌جایی برای بازی‌های بعدی
       enableClick();
     }
   }, 1000);
@@ -51,11 +52,14 @@ function shuffleCups() {
 function swapCups(cup1, cup2) {
   const cupElem1 = document.getElementById('cup' + cup1);
   const cupElem2 = document.getElementById('cup' + cup2);
-  
+
   // انیمیشن جابه‌جایی
   const tempTransform = cupElem1.style.transform;
   cupElem1.style.transform = cupElem2.style.transform;
   cupElem2.style.transform = tempTransform;
+
+  // جابه‌جایی عناصر در DOM
+  cupElem1.parentNode.insertBefore(cupElem1, cupElem2.nextSibling);
 }
 
 function enableClick() {
