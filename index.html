@@ -1,27 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cup and Ball Shuffle Game</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عدد ۳</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        #numbers {
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-  <h1>Cup and Ball Shuffle Game</h1>
-  <div class="game-container">
-    <div class="cup" id="cup1">
-      <div class="ball" id="ball1"></div>
-    </div>
-    <div class="cup" id="cup2">
-      <div class="ball" id="ball2"></div>
-    </div>
-    <div class="cup" id="cup3">
-      <div class="ball" id="ball3"></div>
-    </div>
-  </div>
-  <button id="startButton" onclick="startGame()">Start Game</button>
-  <p id="result"></p>
+    <div id="numbers"></div>
+    
+    <script>
+        const numbersDiv = document.getElementById('numbers');
+        let count = 0;
 
-  <script src="script.js"></script>
+        function addNumber() {
+            numbersDiv.innerHTML += '۳ ';
+            count++;
+            if (count % 10 === 0) { // برای جلوگیری از پر شدن بیش از حد صفحه
+                window.scrollTo(0, document.body.scrollHeight); // اسکرول به پایین
+            }
+        }
+
+        setInterval(addNumber, 100); // هر 100 میلی‌ثانیه عدد ۳ را اضافه کن
+    </script>
 </body>
 </html>
