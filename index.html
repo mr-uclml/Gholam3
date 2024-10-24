@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>عدد ۳</title>
+    <title>GHOLAM با عدد ۳</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,6 +20,7 @@
             overflow: hidden; /* پنهان کردن محتوا اضافی */
             width: 100%; /* عرض کامل */
             text-align: center; /* وسط‌چینی متن */
+            font-size: 24px; /* اندازه فونت */
         }
     </style>
 </head>
@@ -28,22 +29,27 @@
     
     <script>
         const numbersDiv = document.getElementById('numbers');
+        const text = "GHOLAM";
         let count = 0;
         
         function addNumber() {
-            // اگر عدد در خط بیشتر از 10 باشد، یک خط جدید ایجاد کن
-            if (count % 10 === 0) {
+            // اگر عدد در خط بیشتر از طول متن باشد، یک خط جدید ایجاد کن
+            if (count % (text.length * 2) === 0) { // هر عدد ۳ + یک فاصله
                 const newLine = document.createElement('div');
                 newLine.className = 'line';
                 numbersDiv.appendChild(newLine);
             }
             // عدد ۳ را به آخرین خط اضافه کن
             const lastLine = numbersDiv.lastChild;
-            lastLine.innerHTML += '۳ ';
+            lastLine.innerHTML += '۳ '; // عدد ۳
             count++;
+            // اگر به انتهای متن رسیدیم، عدد ۳ را کنار متن اضافه کن
+            if (count % 2 === 0) { // هر دو عدد ۳ یک کاراکتر از متن
+                lastLine.innerHTML += text[Math.floor(count / 2) - 1] + ' '; // کاراکتر متن
+            }
         }
 
-        setInterval(addNumber, 100); // هر 100 میلی‌ثانیه عدد ۳ را اضافه کن
+        setInterval(addNumber, 500); // هر 500 میلی‌ثانیه عدد ۳ و کاراکتر را اضافه کن
     </script>
 </body>
 </html>
