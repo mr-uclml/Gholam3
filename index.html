@@ -1,23 +1,21 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بازی حدس کاسه</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cup and Ball Game</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>بازی حدس کاسه</h1>
-        <p>کاسه‌ای که سکه زیر آن قرار دارد را انتخاب کن!</p>
-        <div class="cups">
-            <div class="cup" id="cup1"></div>
-            <div class="cup" id="cup2"></div>
-            <div class="cup" id="cup3"></div>
-        </div>
-        <button id="shuffleButton">شروع بازی</button>
-        <p id="result"></p>
-    </div>
-    <script src="script.js"></script>
+  <h1>Cup and Ball Game</h1>
+  <div class="game-container">
+    <div class="cup" id="cup1" onclick="checkCup(1)"></div>
+    <div class="cup" id="cup2" onclick="checkCup(2)"></div>
+    <div class="cup" id="cup3" onclick="checkCup(3)"></div>
+  </div>
+  <button onclick="shuffle()">Shuffle Cups</button>
+  <p id="result"></p>
+
+  <script src="script.js"></script>
 </body>
 </html>
