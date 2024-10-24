@@ -8,46 +8,53 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            justify-content: center; /* برای قرار دادن متن در وسط صفحه */
             height: 100vh;
             background-color: #f0f0f0;
             margin: 0;
-            overflow: hidden; /* جلوگیری از اسکرول افقی */
+            overflow: hidden;
         }
         #numbers {
-            font-size: 24px; /* اندازه فونت */
-            text-align: center; /* وسط‌چینی متن */
-            letter-spacing: 2px; /* فاصله بین حروف */
+            font-size: 24px;
+            text-align: center;
+            letter-spacing: 2px;
+            white-space: nowrap;
         }
     </style>
 </head>
 <body>
     <div id="numbers"></div>
-    
+
     <script>
         const numbersDiv = document.getElementById('numbers');
         const text = "GHOLAM"; // متن مورد نظر
+        const totalLength = 40; // طول کل رشته ترکیبی از ۳ ها و متن
+        const middleText = Math.floor(totalLength / 2) - Math.floor(text.length / 2); // موقعیت قرار گرفتن متن در وسط
+
         let count = 0;
-        let textPosition = Math.floor(text.length / 2); // برای شروع از وسط متن
-        let fullText = []; // آرایه‌ای برای ذخیره کل ترکیب ۳ و حروف
 
         function addNumber() {
-            if (count % 10 === 0 && count / 10 < text.length) {
-                // در هر 10 عدد ۳ یک کاراکتر از متن را در وسط جایگزین کن
-                fullText.push(text[Math.floor(count / 10)]);
-            } else {
-                // در بقیه موارد عدد ۳ را اضافه کن
-                fullText.push('۳');
-            }
-            count++;
+            let displayText = "";
 
-            // نمایش ترکیب نهایی در صفحه
-            numbersDiv.innerHTML = fullText.join(' ');
+            // ساخت رشته‌ای از اعداد ۳ و متن در وسط
+            for (let i = 0; i < totalLength; i++) {
+                if (i >= middleText && i < middleText + text.length) {
+                    displayText += text[i - middleText]; // جایگزینی حروف "GHOLAM" در وسط
+                } else {
+                    displayText += '۳'; // اضافه کردن عدد ۳ در بقیه جاها
+                }
+            }
+
+            // چرخش متن و اعداد به طور پیوسته
+            count++;
+            displayText = displayText.slice(count % totalLength) + displayText.slice(0, count % totalLength);
+
+            // نمایش در صفحه
+            numbersDiv.innerHTML = displayText;
         }
 
-        setInterval(addNumber, 200); // هر 200 میلی‌ثانیه عدد ۳ یا کاراکتر جدید را اضافه کن
+        setInterval(addNumber, 100); // هر 100 میلی‌ثانیه متن را حرکت بده
     </script>
 </body>
 </html>
